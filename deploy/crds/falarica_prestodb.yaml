@@ -1,0 +1,68 @@
+apiVersion: falarica.io/v1alpha1
+kind: Presto
+metadata:
+  name: mycluster
+spec:
+  service:
+    type: "NodePort"
+    port: 8100
+    nodePort: 30002
+  catalogs:
+    catalogSpec:
+      - name: hive
+        content:
+          connector.name: hive-hadoop2
+          hive.metastore.uri: thrift://35.192.90.145:9083
+          hive.metastore.authentication.type: NONE
+          hive.gcs.json-key-file-path: /etc/gcssecret/integratedtesting-e278ad542088.json
+      - name: postgres
+        content:
+          connector.name: postgresql
+          connection-url: jdbc:postgresql://35.192.90.145:5432/testdb
+          connection-user: prestogateway
+          connection-password: root123
+# kubectl create secret generic tpchsecret --from-literal=mytpch='connector.name=tpch' --from-literal=myjmx='connector.name=jmx'
+#    catalogSecrets:
+#      - secretName: tpchsecret
+#        secretKey: mytpch
+#      - secretName: tpchsecret
+#        secretKey: myjmx
+  volumes:
+  - name: spillvol
+    emptyDir: {}
+    mountPath: /prestospill
+  - name: gcssecret
+    secret:
+      secretName: gcssecret
+    mountPath: "/etc/gcssecret"
+  - name: resourcejson1
+    secret:
+      secretName: resourcejson1
+    mountPath: "/etc/resourcejson1"
+  imageDetails:
+    name: "trivadis/prestodb:latest" 
+    prestoPath: "/opt/presto/etc"
+  coordinator:
+    memoryLimit: "4Gi"
+    cpuLimit: "1"
+    # kubectl create secret  generic  prestokeystore  --from-file=/tmp/etc/prestoserverkeystore.jks
+    httpsEnabled: true
+    httpsKeyPairSecretName: "presto1keystore"
+    httpsKeyPairSecretKey: "prestoserver1keystore.jks"
+    httpsKeyPairPassword: "presto1"
+  worker:
+    memoryLimit: "4Gi"
+    cpuLimit: "2"
+    count: 1
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 4
+      targetCPUUtilizationPercentage: 60
+    additionalProps:
+      shutdown.grace-period: 10s
+  additionalPrestoPropFiles:
+    resource-groups.properties:   
+      "resource-groups.configuration-manager=file\n
+      resource-groups.config-file=/etc/resourcejson1/resource-groups.json"
+
