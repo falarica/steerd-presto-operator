@@ -1,6 +1,8 @@
 # Autoscaling
 
-Workers in the presto cluster can be scaled up and down based on the CPU utilization in the Presto cluster. Operator uses K8S's Horizontal Pod Autoscaling for scaling.
+Kubernetes' [Horizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) (HPA) automatically scales the number of pods in a replication controller, deployment, replica set or stateful set based on observed CPU utilization. 
+
+Presto Operator uses HPA to scale up and down Presto workers in the presto cluster based on the CPU utilization.
 
 With autoscaling, initially the `spec.worker.count` number of workers are created. Based on `spec.worker.autoscaling.targetCPUUtilizationPercentage`, the workers are scaled up and down. The minium number of workers to which it scales down is `spec.worker.autoscaling.minReplicas`. The maximum number of workers to which it scales up is `spec.worker.autoscaling.maxReplicas`. 
 

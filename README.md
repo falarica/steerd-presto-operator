@@ -1,8 +1,10 @@
 # SteerD Presto Kubernetes Operator
 
+[Kubernetes](https://kubernetes.io/docs/home/) is an open source container orchestration engine for automating deployment, scaling, and management of containerized applications. [Operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) are software extensions to Kubernetes that make use of custom resources to manage applications and their components. Operators follow Kubernetes principles, notably the control loop.
+
 SteerD Presto Operator is a Kubernetes Operator for Presto to manage Presto clusters which are deployed as custom resources. In short, the task of configuring, creating, managing, automatically scaling up and scaling-in of Presto cluster(s) in a Kubernetes environment has been made simple, easy and quick.
 
-SteerD Presto Operator supports both PrestoDB and PrestoSQL forks. 
+SteerD Presto Operator supports both **PrestoDB** and **PrestoSQL** forks. 
 
 ## Deploying Operator
 
@@ -65,3 +67,4 @@ $ kubectl apply -f    deploy/crds/falarica.io_v1alpha1_presto_cr.yaml
 - [Services](docs/service.md)
 - [Additional Volumes](docs/additionalvolumes.md)
 - [HTTPS Support](docs/https.md)
+- [Caveats/Future Work](docs/caveats.md)
