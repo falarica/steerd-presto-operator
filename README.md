@@ -68,3 +68,8 @@ $ kubectl apply -f    deploy/crds/falarica.io_v1alpha1_presto_cr.yaml
 - [Additional Volumes](docs/additionalvolumes.md)
 - [HTTPS Support](docs/https.md)
 - [Caveats/Future Work](docs/caveats.md)
+
+## Community support
+
+* [Slack](https://join.slack.com/t/falarica/shared_invite/zt-gql1dl9i-mm6lOJYgsEUuF6JXIgxCcA) ![Slack](http://i.imgur.com/h3sc6GM.png)
+* [contact@falarica.io](contact@falarica.io)
