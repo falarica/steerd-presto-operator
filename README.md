@@ -9,7 +9,7 @@ SteerD Presto Operator supports both **PrestoDB** and **PrestoSQL** forks.
 ## Deploying Operator
 
 ### Deploying Operator - Locally
-*Step 1:* Enable metrics server for k8s, if not already enabled. [See this](https://github.com/kubernetes-sigs/metrics-server). This is needed for horizontal pod autoscaling.
+*Step 1:* Enable metrics server for k8s, if not already enabled. [See this](https://github.com/kubernetes-sigs/metrics-server). This is needed for horizontal pod autoscaling..
 
 *Step 2:* Build the operator 
 ```bash
