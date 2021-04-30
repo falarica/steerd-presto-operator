@@ -4,9 +4,8 @@ metadata:
   name: mycluster
 spec:
   service:
-    type: "NodePort"
+    type: "LoadBalancer"
     port: 8100
-    nodePort: 30002
   catalogs:
     catalogSpec:
       - name: hive
@@ -31,38 +30,38 @@ spec:
   - name: spillvol
     emptyDir: {}
     mountPath: /prestospill
-  - name: gcssecret
-    secret:
-      secretName: gcssecret
-    mountPath: "/etc/gcssecret"
-  - name: resourcejson1
-    secret:
-      secretName: resourcejson1
-    mountPath: "/etc/resourcejson1"
+ # - name: gcssecret
+ #   secret:
+ #     secretName: gcssecret
+ #   mountPath: "/etc/gcssecret"
+ # - name: resourcejson1
+ #   secret:
+ #     secretName: resourcejson1
+ #   mountPath: "/etc/resourcejson1"
   imageDetails:
     name: "trivadis/prestodb:latest" 
     prestoPath: "/opt/presto/etc"
   coordinator:
-    memoryLimit: "4Gi"
-    cpuLimit: "1"
+    memoryLimit: "1Gi"
+    cpuLimit: "0.25"
     # kubectl create secret  generic  prestokeystore  --from-file=/tmp/etc/prestoserverkeystore.jks
-    httpsEnabled: true
-    httpsKeyPairSecretName: "presto1keystore"
-    httpsKeyPairSecretKey: "prestoserver1keystore.jks"
-    httpsKeyPairPassword: "presto1"
+    httpsEnabled: false
+    httpsKeyPairSecretName: "prestokeystore"
+    httpsKeyPairSecretKey: "prestoserverkeystore.jks"
+    httpsKeyPairPassword: "password"
   worker:
-    memoryLimit: "4Gi"
-    cpuLimit: "2"
+    memoryLimit: "1Gi"
+    cpuLimit: "0.25"
     count: 1
     autoscaling:
       enabled: true
       minReplicas: 1
       maxReplicas: 4
-      targetCPUUtilizationPercentage: 60
+      targetCPUUtilizationPercentage: 30
     additionalProps:
       shutdown.grace-period: 10s
-  additionalPrestoPropFiles:
-    resource-groups.properties:   
-      "resource-groups.configuration-manager=file\n
-      resource-groups.config-file=/etc/resourcejson1/resource-groups.json"
+ # additionalPrestoPropFiles:
+ #   resource-groups.properties:   
+ #     "resource-groups.configuration-manager=file\n
+ #     resource-groups.config-file=/etc/resourcejson1/resource-groups.json"
 

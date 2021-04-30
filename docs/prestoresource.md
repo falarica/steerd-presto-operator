@@ -49,7 +49,7 @@ spec:
 Presto cluster can be created using this YAML.
 
 ```bash
-kubectl apply   -f  deploy/crds/falarica.io_v1alpha1_presto_cr.yaml
+kubectl apply   -f  deploy/crds/falarica_prestodb.yaml
 ```
 
 The main components of the YAML are service, catalogs, coordinator and worker. Coordinator and worker are used to specify the properties of coordinator and worker. All the workers in the cluster would have the same properties.

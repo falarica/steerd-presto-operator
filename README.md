@@ -4,8 +4,6 @@
 
 SteerD Presto Operator is a Kubernetes Operator for Presto to manage Presto clusters which are deployed as custom resources. In short, the task of configuring, creating, managing, automatically scaling up and scaling-in of Presto cluster(s) in a Kubernetes environment has been made simple, easy and quick.
 
-SteerD Presto Operator supports both **PrestoDB** and **PrestoSQL** forks. 
-
 ## Deploying Operator
 
 ### Deploying Operator - Locally
@@ -54,8 +52,8 @@ $ kubectl apply -f deploy/operator.yaml
 
 Deploy the presto cluster
 ```bash
-$ ## Deploy Presto SQL. For PrestoDB, refer deploy/crds/falarica_prestodb.yaml 
-$ kubectl apply -f    deploy/crds/falarica.io_v1alpha1_presto_cr.yaml
+$ ## Deploy Presto
+$ kubectl apply -f deploy/crds/falarica_prestodb.yaml  
 ```
 
 ## Further Details 
@@ -72,4 +70,5 @@ $ kubectl apply -f    deploy/crds/falarica.io_v1alpha1_presto_cr.yaml
 ## Community support
 
 * [Slack](https://join.slack.com/t/falarica/shared_invite/zt-gql1dl9i-mm6lOJYgsEUuF6JXIgxCcA) ![Slack](http://i.imgur.com/h3sc6GM.png)
+
 * [contact@falarica.io](contact@falarica.io)
