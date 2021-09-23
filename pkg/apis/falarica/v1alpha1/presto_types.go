@@ -28,6 +28,8 @@ type CoordinatorSpec struct {
 	HttpsKeyPairSecretKey string `json:"httpsKeyPairSecretKey,omitempty"`
 	// +kubebuilder:validation:Optional
 	HttpsKeyPairPassword string `json:"httpsKeyPairPassword,omitempty"`
+	// +kubebuilder:validation:Optional
+	CoordinatorPodAnnotations map[string]string `json:"coordinatorPodAnnotations,omitempty"`
 }
 
 // +k8s:openapi-gen=true
@@ -60,6 +62,9 @@ type WorkerSpec struct {
 
 	// +kubebuilder:validation:Optional
 	Autoscaling AutoscalingSpec `json:"autoscaling,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	WorkerPodAnnotations map[string]string `json:"workerPodAnnotations,omitempty"`
 }
 
 // +k8s:openapi-gen=true
@@ -218,6 +223,9 @@ type ServiceSpec struct {
 
 	// +kubebuilder:validation:Optional
 	IPFamily *v1.IPFamily `json:"ipFamily,omitempty" protobuf:"bytes,15,opt,name=ipFamily,Configcasttype=IPFamily"`
+
+	// +kubebuilder:validation:Optional
+	ServiceAnnotations map[string]string `json:"serviceAnnotations,omitempty"`
 }
 
 // +k8s:openapi-gen=true

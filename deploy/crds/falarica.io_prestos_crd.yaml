@@ -97,6 +97,10 @@ spec:
                   additionalProperties:
                     type: string
                   type: object
+                coordinatorPodAnnotations:
+                  additionalProperties:
+                    type: string
+                  type: object
                 cpuLimit:
                   type: string
                 cpuRequest:
@@ -213,6 +217,10 @@ spec:
                     for its Pods without respect to their readiness for purpose of
                     peer discovery.
                   type: boolean
+                serviceAnnotations:
+                  additionalProperties:
+                    type: string
+                  type: object
                 sessionAffinity:
                   description: 'Supports "ClientIP" and "None". Used to maintain session
                     affinity. Enable client IP based session affinity. Must be ClientIP
@@ -1498,6 +1506,10 @@ spec:
                     time for your process. Defaults to 7200 seconds.
                   format: int64
                   type: integer
+                workerPodAnnotations:
+                  additionalProperties:
+                    type: string
+                  type: object
               required:
               - count
               - cpuLimit

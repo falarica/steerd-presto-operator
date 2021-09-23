@@ -122,6 +122,13 @@ func (in *CoordinatorSpec) DeepCopyInto(out *CoordinatorSpec) {
 			(*out)[key] = val
 		}
 	}
+	if in.CoordinatorPodAnnotations != nil {
+		in, out := &in.CoordinatorPodAnnotations, &out.CoordinatorPodAnnotations
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
 	return
 }
 
@@ -336,6 +343,13 @@ func (in *ServiceSpec) DeepCopyInto(out *ServiceSpec) {
 		*out = new(v1.IPFamily)
 		**out = **in
 	}
+	if in.ServiceAnnotations != nil {
+		in, out := &in.ServiceAnnotations, &out.ServiceAnnotations
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
 	return
 }
 
@@ -370,6 +384,13 @@ func (in *WorkerSpec) DeepCopyInto(out *WorkerSpec) {
 		**out = **in
 	}
 	in.Autoscaling.DeepCopyInto(&out.Autoscaling)
+	if in.WorkerPodAnnotations != nil {
+		in, out := &in.WorkerPodAnnotations, &out.WorkerPodAnnotations
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
 	return
 }
 

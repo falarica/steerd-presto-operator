@@ -6,6 +6,10 @@ spec:
   service:
     type: "LoadBalancer"
     port: 8100
+    serviceAnnotations:
+      abc: test
+      prometheus: "true"
+      next: "test"
   catalogs:
     catalogSpec:
       - name: hive
@@ -49,10 +53,15 @@ spec:
     httpsKeyPairSecretName: "prestokeystore"
     httpsKeyPairSecretKey: "prestoserverkeystore.jks"
     httpsKeyPairPassword: "password"
+    coordinatorPodAnnotations:
+      abc: test
+      prometheus: "true"
   worker:
     memoryLimit: "1Gi"
     cpuLimit: "0.25"
     count: 1
+    workerPodAnnotations:
+      abc: test
     autoscaling:
       enabled: true
       minReplicas: 1
