@@ -24,12 +24,12 @@ func getCoordinatorInternalName(clusterUUID string) string {
 		getPodDiscoveryServiceName(clusterUUID))
 }
 
-func getExternalServiceName(clusterUUID string) string {
-	return "external-presto-svc-" + clusterUUID[:8]
+func getExternalServiceName(clusterName string) string {
+	return "ext-presto-svc-" + clusterName
 }
 
 func getExternalServiceLabel(clusterUUID string) (string, string) {
-	return "external-presto-svc", clusterUUID
+	return "ext-presto-svc", clusterUUID
 }
 
 func getCoordinatorPodName(clusterUUID string) string {

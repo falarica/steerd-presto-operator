@@ -339,7 +339,7 @@ func (r *ReconcilePresto) serviceConfig(presto *falaricav1alpha1.Presto,
 		if created{
 			r.log.Info("created service ")
 			r.eventRecorder.Eventf(presto, corev1.EventTypeNormal, "Created",
-				"Created Service. %s", getExternalServiceName(presto.Status.Uuid))
+				"Created Service. %s", getExternalServiceName(presto.Name))
 			changesMade = true
 		}
 		if created || len(presto.Status.CoordinatorAddress) == 0 {
